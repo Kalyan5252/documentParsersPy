@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import os
 import tempfile
@@ -7,6 +8,7 @@ import tempfile
 from parsers import normalize_column, detect_file_type, push_to_neo4j
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/parse-data', methods=['POST'])
 def parse_data():

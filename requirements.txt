@@ -3,3 +3,7 @@ Flask
 flask-cors
 openpyxl
 pandas
+langchain
+langchain-core
+openai
+requests

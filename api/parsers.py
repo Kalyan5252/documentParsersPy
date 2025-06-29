@@ -1,11 +1,19 @@
 
 from collections import defaultdict
-from config import driver
-from documentParsers import (
-    create_nodes_and_relationships_for_cdr,
-    create_nodes_and_relationships_for_ipdr,
-    create_nodes_and_relationships_for_towers,
-)
+try:
+    from .config import driver
+    from .documentParsers import (
+        create_nodes_and_relationships_for_cdr,
+        create_nodes_and_relationships_for_ipdr,
+        create_nodes_and_relationships_for_towers,
+    )
+except ImportError:
+    from config import driver
+    from documentParsers import (
+        create_nodes_and_relationships_for_cdr,
+        create_nodes_and_relationships_for_ipdr,
+        create_nodes_and_relationships_for_towers,
+    )
 
 def normalize_column(col):
     return col.strip().replace(" ", "_").upper()

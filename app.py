@@ -10,12 +10,17 @@ from parsers import normalize_column, detect_file_type, push_to_neo4j
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/check', methods=['GET'])
+def checkapi():
+    return jsonify({"success": "working"}), 400
+
 @app.route('/parse-data', methods=['POST'])
 def parse_data():
     if 'file' not in request.files:
         return jsonify({"error": "No file part in the request"}), 400
 
     file = request.files['file']
+    print(f'got file {file}')
     if file.filename == '':
         return jsonify({"error": "No selected file"}), 400
 

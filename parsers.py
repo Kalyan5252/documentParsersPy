@@ -1,3 +1,12 @@
+
+from collections import defaultdict
+from config import driver
+from documentParsers import (
+    create_nodes_and_relationships_for_cdr,
+    create_nodes_and_relationships_for_ipdr,
+    create_nodes_and_relationships_for_towers,
+)
+
 def normalize_column(col):
     return col.strip().replace(" ", "_").upper()
 
@@ -10,14 +19,6 @@ def detect_file_type(columns):
     elif {"SOURCE_IP_ADDRESS", "TRANSLATED_IP_ADDRESS", "DESTINATION_IP_ADDRESS", "SESSION_DURATION"}.intersection(cols):
         return "IPDR"
     return "UNKNOWN"
-
-from collections import defaultdict
-from .config import driver
-from .parsers import (
-    create_nodes_and_relationships_for_cdr,
-    create_nodes_and_relationships_for_ipdr,
-    create_nodes_and_relationships_for_towers,
-)
 
 def batch_merge_nodes(tx, label, nodes):
     tx.run(f"""

@@ -3,5 +3,4 @@ Flask
 flask-cors
 openpyxl
 pandas
-fastapi
 gunicorn
